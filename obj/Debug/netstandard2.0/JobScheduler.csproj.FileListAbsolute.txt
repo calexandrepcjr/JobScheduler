@@ -1,9 +1,0 @@
-C:\Users\Nanas\source\repos\git\JobScheduler\bin\Debug\netstandard2.0\JobScheduler.deps.json
-C:\Users\Nanas\source\repos\git\JobScheduler\bin\Debug\netstandard2.0\JobScheduler.dll
-C:\Users\Nanas\source\repos\git\JobScheduler\bin\Debug\netstandard2.0\JobScheduler.pdb
-C:\Users\Nanas\source\repos\git\JobScheduler\obj\Debug\netstandard2.0\JobScheduler.csprojAssemblyReference.cache
-C:\Users\Nanas\source\repos\git\JobScheduler\obj\Debug\netstandard2.0\JobScheduler.csproj.CoreCompileInputs.cache
-C:\Users\Nanas\source\repos\git\JobScheduler\obj\Debug\netstandard2.0\JobScheduler.AssemblyInfoInputs.cache
-C:\Users\Nanas\source\repos\git\JobScheduler\obj\Debug\netstandard2.0\JobScheduler.AssemblyInfo.cs
-C:\Users\Nanas\source\repos\git\JobScheduler\obj\Debug\netstandard2.0\JobScheduler.dll
-C:\Users\Nanas\source\repos\git\JobScheduler\obj\Debug\netstandard2.0\JobScheduler.pdb
