@@ -9,4 +9,4 @@ the scheduler will organize chunks of jobs, which each job list will execute seq
 
 ## How to see it working
 
-1. Run the Exemple/telecom-job-scheduler.exe - the example will be fed by a [valid](https://tools.ietf.org/html/rfc8259) JSON called sample.json.
+1. Run the Example/telecom-job-scheduler.exe - the example will be fed by a [valid](https://tools.ietf.org/html/rfc8259) JSON called sample.json.
