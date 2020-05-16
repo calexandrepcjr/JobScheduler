@@ -1,5 +1,5 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
+﻿using JobScheduler.Contracts;
+using System;
 
 namespace JobScheduler
 {
@@ -8,6 +8,19 @@ namespace JobScheduler
         public readonly int id;
         public readonly string description;
         public readonly DateTime expiresAt;
-        public readonly string estimatedTime;
+        public readonly EstimatedTime estimatedTime;
+
+        public Job(int id, string description, DateTime expiresAt, EstimatedTime estimatedTime)
+        {
+            this.id = id;
+            this.description = description;
+            this.expiresAt = expiresAt;
+            this.estimatedTime = estimatedTime;
+        }
+
+        public int Duration()
+        {
+            return estimatedTime.ToSeconds();
+        }
     }
 }
