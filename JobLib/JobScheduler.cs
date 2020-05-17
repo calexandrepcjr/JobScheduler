@@ -7,7 +7,7 @@ namespace JobLib
     public class JobScheduler
     {
         private readonly List<Queue<Job>> Queues = new List<Queue<Job>>();
-        private readonly Dictionary<int, int> QueuesScore = new Dictionary<int, int>();
+        private readonly SchedulerQueueScore QueuesScore = new SchedulerQueueScore();
         private readonly ExecutionWindow ExecutionWindow;
         private readonly EstimatedTime MaxEstimatedTime;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -63,7 +63,7 @@ namespace JobLib
 
             for (var queueRow = 0; queueRow < queuesLength; queueRow++)
             {
-                if (QueuesScore[queueRow] >= MaxEstimatedTime.ToSeconds())
+                if (QueuesScore.HasReachedScore(queueRow, MaxEstimatedTime.ToSeconds()))
                 {
                     continue;
                 }
@@ -79,20 +79,9 @@ namespace JobLib
         protected Queue<Job> EnqueueJob(Job job, Queue<Job> queue, int queuePosition = 0)
         {
             queue.Enqueue(job);
-            RefreshScore(queuePosition, job.EstimatedTime.ToSeconds());
+            QueuesScore.RefreshScore(queuePosition, job.EstimatedTime.ToSeconds());
 
             return queue;
-        }
-
-        protected void RefreshScore(int queuePosition, int estimatedHours)
-        {
-            if (QueuesScore.ContainsKey(queuePosition))
-            {
-                QueuesScore[queuePosition] += estimatedHours;
-                return;
-            }
-
-            QueuesScore.Add(queuePosition, estimatedHours);
         }
     }
 }
