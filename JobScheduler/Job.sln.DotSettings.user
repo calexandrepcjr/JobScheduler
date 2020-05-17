@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c1a3b229_002D9be9_002D4fd0_002D9eb6_002D041aad348f90/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreatesInstanceWithTwoDateTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.ExecutionWindowSpecs.CreatesInstanceWithTwoDateTime&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cd46c2fd_002D161a_002D4734_002Db1ac_002Dc37bcfb643bd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreatesInstanceWithExecutionWindowAndEstimatedTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.CreatesInstanceWithExecutionWindowAndEstimatedTime&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.ExecutionWindowSpecs.CreatesInstanceWithTwoDateTime&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.ExecutionWindowSpecs.RespondsFalseToIsInWhenDateIsOutsideExecutionWindow&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

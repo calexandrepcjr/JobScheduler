@@ -1,26 +1,26 @@
-﻿using JobScheduler.Contracts;
+﻿using JobLib.Contracts;
 using System;
 
-namespace JobScheduler
+namespace JobLib
 {
     public class Job
     {
-        public readonly int id;
-        public readonly string description;
-        public readonly DateTime expiresAt;
-        public readonly EstimatedTime estimatedTime;
+        public readonly int Id;
+        public readonly string Description;
+        public readonly DateTime ExpiresAt;
+        public readonly EstimatedTime EstimatedTime;
 
         public Job(int id, string description, DateTime expiresAt, EstimatedTime estimatedTime)
         {
-            this.id = id;
-            this.description = description;
-            this.expiresAt = expiresAt;
-            this.estimatedTime = estimatedTime;
+            Id = id;
+            Description = description;
+            ExpiresAt = expiresAt;
+            EstimatedTime = estimatedTime;
         }
 
         public int Duration()
         {
-            return estimatedTime.ToSeconds();
+            return EstimatedTime.ToSeconds();
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using JobScheduler.Contracts;
+﻿using JobLib.Contracts;
 using System;
 using System.Collections.Generic;
 
-namespace JobScheduler
+namespace JobLib
 {
     public class EstimatedTimeBR : EstimatedTime
     {
@@ -20,9 +20,12 @@ namespace JobScheduler
             {
                 return new Dictionary<string, Func<int, int>>()
                 {
+                    {"hora", time => time * 3600 },
                     {"horas", time => time * 3600 },
+                    {"minuto", time => time * 60 },
                     {"minutos", time => time * 60 },
-                    {"segundos", time => time },
+                    {"segundo", time => time },
+                    {"segundos", time => time }
                 };
             }
         }
