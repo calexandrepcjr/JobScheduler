@@ -1,5 +1,6 @@
 ﻿using JobLib.Contracts;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JobLib
 {
@@ -9,7 +10,7 @@ namespace JobLib
         private readonly Dictionary<int, int> QueuesScore = new Dictionary<int, int>();
         private readonly ExecutionWindow ExecutionWindow;
         private readonly EstimatedTime MaxEstimatedTime;
-        private static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public JobScheduler(ExecutionWindow window, EstimatedTime maxEstimatedTime)
         {
@@ -39,38 +40,59 @@ namespace JobLib
             return MaxEstimatedTime;
         }
 
-        public Job[][] ToArray()
+        public List<Queue<Job>> GetQueues()
         {
-            return Queues.ConvertAll(queue => queue.ToArray()).ToArray();
+            return Queues;
+        }
+
+        public int[][] ToArray()
+        {
+            return Queues.ConvertAll(queue => queue.Select(job => job.Id).ToArray()).ToArray();
         }
 
         protected void AddJobToQueue(Job job)
         {
             if (Queues.Count == 0)
             {
-                var queue = new Queue<Job>();
-                EnqueueJob(job, queue);
+                Queues.Add(EnqueueJob(job, new Queue<Job>()));
 
                 return;
             }
 
-            int queuesLength = Queues.Count;
+            var queuesLength = Queues.Count;
 
-            for (int queueRow = 0; queueRow <= queuesLength; queueRow++)
+            for (var queueRow = 0; queueRow < queuesLength; queueRow++)
             {
-                if (QueuesScore[queueRow] >= MaxEstimatedTime.ToHours())
+                if (QueuesScore[queueRow] >= MaxEstimatedTime.ToSeconds())
                 {
                     continue;
                 }
 
                 EnqueueJob(job, Queues[queueRow], queueRow);
+
+                return;
             }
+
+            Queues.Add(EnqueueJob(job, new Queue<Job>()));
         }
 
-        protected void EnqueueJob(Job job, Queue<Job> queue, int queuePosition = 0)
+        protected Queue<Job> EnqueueJob(Job job, Queue<Job> queue, int queuePosition = 0)
         {
             queue.Enqueue(job);
-            QueuesScore.Add(queuePosition, job.EstimatedTime.ToHours());
+            RefreshScore(queuePosition, job.EstimatedTime.ToSeconds());
+
+            return queue;
+        }
+
+        protected void RefreshScore(int queuePosition, int estimatedHours)
+        {
+            if (QueuesScore.ContainsKey(queuePosition))
+            {
+                QueuesScore[queuePosition] += estimatedHours;
+                return;
+            }
+
+            QueuesScore.Add(queuePosition, estimatedHours);
         }
     }
 }

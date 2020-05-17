@@ -1,4 +1,9 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=083b0a38_002D5798_002D4cd3_002Db060_002Dc8677ae3efa0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SchedulesAJobInsideExecutionWindowWithProperEstimatedTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.SchedulesAJobInsideExecutionWindowWithProperEstimatedTime&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c1a3b229_002D9be9_002D4fd0_002D9eb6_002D041aad348f90/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreatesInstanceWithTwoDateTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.ExecutionWindowSpecs.CreatesInstanceWithTwoDateTime&lt;/TestId&gt;&#xD;
