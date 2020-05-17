@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobLib", "JobLib.csproj", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "..\Test\Test.csproj", "{7C73EEB6-EAC8-405B-940D-9E1AC550E48B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "..\JobSchedulerExample\Example.csproj", "{7888B792-AEBA-4F16-A45E-78D9E979A4E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "..\JobLibExample\Example.csproj", "{7888B792-AEBA-4F16-A45E-78D9E979A4E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

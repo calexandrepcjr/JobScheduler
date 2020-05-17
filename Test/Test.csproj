@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JobScheduler\JobLib.csproj" />
+    <ProjectReference Include="..\JobLib\JobLib.csproj" />
+    <ProjectReference Include="..\JobLib\JobLib.csproj" />
   </ItemGroup>
 
 </Project>
