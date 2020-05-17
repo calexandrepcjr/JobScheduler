@@ -1,26 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace JobLib
 {
     public class SchedulerQueueScore
     {
         private readonly Dictionary<int, int> QueuesScore;
+        private int MaxScore;
 
-        public SchedulerQueueScore(Dictionary<int, int> dict = null)
+        public SchedulerQueueScore(int maxScore = 0, Dictionary<int, int> dict = null)
         {
             QueuesScore = dict ?? new Dictionary<int, int>();
+            MaxScore = maxScore;
         }
 
-        public int GetScore(int queueRow = 0)
+        public void UpdateMaxScore(int maxScore)
         {
-            return !QueuesScore.ContainsKey(queueRow) ? -1 : QueuesScore[queueRow];
+            MaxScore = maxScore;
         }
 
-        public bool HasReachedScore(int queueRow, int score)
+        public int GetScore(int queuePosition = 0)
         {
-            return this.GetScore(queueRow) >= score;
+            return !QueuesScore.ContainsKey(queuePosition) ? -1 : QueuesScore[queuePosition];
+        }
+
+        public bool HasQueueReachedScore(int queuePosition, int additionalScore = 0)
+        {
+            return this.GetScore(queuePosition) + additionalScore >= MaxScore;
+        }
+
+        public bool HasReachedScore(int score)
+        {
+            return score >= MaxScore;
+        }
+
+        public void ResetScore(int queuePosition, int score = 0)
+        {
+            QueuesScore[queuePosition] = score;
         }
 
         public void RefreshScore(int queuePosition, int score)

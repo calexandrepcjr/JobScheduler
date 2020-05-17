@@ -16,6 +16,7 @@ namespace JobLib
         {
             ExecutionWindow = window;
             MaxEstimatedTime = maxEstimatedTime;
+            QueuesScore.UpdateMaxScore(MaxEstimatedTime.ToSeconds());
         }
 
         public void Schedule(Job job)
@@ -63,7 +64,7 @@ namespace JobLib
 
             for (var queueRow = 0; queueRow < queuesLength; queueRow++)
             {
-                if (QueuesScore.HasReachedScore(queueRow, MaxEstimatedTime.ToSeconds()))
+                if (QueuesScore.HasQueueReachedScore(queueRow))
                 {
                     continue;
                 }
@@ -78,10 +79,54 @@ namespace JobLib
 
         protected Queue<Job> EnqueueJob(Job job, Queue<Job> queue, int queuePosition = 0)
         {
+            if (queue.Count > 0 && QueuesScore.HasQueueReachedScore(queuePosition, job.Duration()))
+            {
+                ReorderQueue(job, queue, queuePosition);
+
+                return queue;
+            }
+
             queue.Enqueue(job);
             QueuesScore.RefreshScore(queuePosition, job.EstimatedTime.ToSeconds());
 
             return queue;
+        }
+
+        protected void ReorderQueue(Job job, Queue<Job> queue, int queuePosition)
+        {
+            var remainingJobs = new List<Job>();
+            var hasReordered = false;
+
+            foreach (var queueJob in queue)
+            {
+                if (QueuesScore.HasReachedScore(job.Duration() + queueJob.Duration()))
+                {
+                    remainingJobs = queue.Where(j => j.Id != queueJob.Id).ToList();
+                    var rebalancedQueue = new Queue<Job>();
+                    rebalancedQueue.Enqueue(queueJob);
+                    rebalancedQueue.Enqueue(job);
+                    Queues[queuePosition] = rebalancedQueue;
+                    QueuesScore.ResetScore(queuePosition, job.Duration() + queueJob.Duration());
+
+                    hasReordered = true;
+
+                    break;
+                }
+
+                remainingJobs.Add(queueJob);
+            }
+
+            if (!hasReordered)
+            {
+                var rebalancedQueue = new Queue<Job>();
+                rebalancedQueue.Enqueue(job);
+                Queues[queuePosition] = rebalancedQueue;
+            }
+
+            foreach (var remainingJob in remainingJobs)
+            {
+                AddJobToQueue(remainingJob);
+            }
         }
     }
 }

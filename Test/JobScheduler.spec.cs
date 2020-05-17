@@ -149,8 +149,8 @@ namespace Test
             var estimatedTime = new EstimatedTimeBR("2 horas");
             var jobObj = new Job(1, "Integration", Convert.ToDateTime("2019-11-10 12:00:00"), estimatedTime);
             jobScheduler.Schedule(jobObj);
-            var estimatedTime2 = new EstimatedTimeBR("6 horas");
-            var jobObj2 = new Job(2, "Integration2", Convert.ToDateTime("2019-11-10 14:00:00"), estimatedTime2);
+            var estimatedTime2 = new EstimatedTimeBR("4 horas");
+            var jobObj2 = new Job(2, "Integration2", Convert.ToDateTime("2019-11-11 12:00:00"), estimatedTime2);
             jobScheduler.Schedule(jobObj2);
             var estimatedTime3 = new EstimatedTimeBR("6 horas");
             var jobObj3 = new Job(3, "Integration3", Convert.ToDateTime("2019-11-11 08:00:00"), estimatedTime3);
@@ -160,15 +160,15 @@ namespace Test
             var expectedSchedulerArray = new int[2][];
             expectedSchedulerArray[0] = new int[2];
             expectedSchedulerArray[0][0] = 1;
-            expectedSchedulerArray[0][1] = 2;
+            expectedSchedulerArray[0][1] = 3;
             expectedSchedulerArray[1] = new int[1];
-            expectedSchedulerArray[1][0] = 3;
+            expectedSchedulerArray[1][0] = 2;
 
             var queue = new Queue<Job>();
             queue.Enqueue(jobObj);
-            queue.Enqueue(jobObj2);
+            queue.Enqueue(jobObj3);
             var queue2 = new Queue<Job>();
-            queue2.Enqueue(jobObj3);
+            queue2.Enqueue(jobObj2);
 
             var expectedQueues = new List<Queue<Job>>
             {

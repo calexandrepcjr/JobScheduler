@@ -4,6 +4,11 @@
     &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.SchedulesAJobInsideExecutionWindowWithProperEstimatedTime&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=54f39d15_002D2af9_002D4770_002Db377_002Df9975afa40fb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SchedulesThreeJobsInsideExecutionWindowWithProperEstimatedTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.SchedulesThreeJobsInsideExecutionWindowWithProperEstimatedTime&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c1a3b229_002D9be9_002D4fd0_002D9eb6_002D041aad348f90/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreatesInstanceWithTwoDateTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.ExecutionWindowSpecs.CreatesInstanceWithTwoDateTime&lt;/TestId&gt;&#xD;
