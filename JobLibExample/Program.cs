@@ -26,7 +26,20 @@ namespace JobLibExample
 
             Console.WriteLine("Sample Selected: " + sampleFilename + "\n");
 
+            if (!HasSample(args))
+            {
+                Console.WriteLine("Error: Sample filename not inserted, next time execute with sample filename as argument\n");
+                Console.WriteLine("Example: .\\Example.exe samplefilename.json\n");
+                return;
+            }
+
             var sampleContent = GetSampleContent(sampleFilename);
+
+            if (string.IsNullOrEmpty(sampleContent))
+            {
+                Console.WriteLine("Error: Sample file not exists, next time execute with a valid sample file as argument\n");
+                return;
+            }
 
             Console.WriteLine("============= SAMPLE CONTENT =================\n");
             Console.WriteLine(sampleContent);
@@ -45,9 +58,11 @@ namespace JobLibExample
             Console.WriteLine("\nPress any key to close");
         }
 
+        static bool HasSample(string[] args) => args.Length > 0;
+
         static string GetSampleName(string[] args) => args.Length > 0 ? args[0] : "No sample selected";
 
-        static string GetSampleContent(string sampleFilename) => File.ReadAllText(sampleFilename, Encoding.UTF8);
+        static string GetSampleContent(string sampleFilename) => !File.Exists(sampleFilename) ? "" : File.ReadAllText(sampleFilename, Encoding.UTF8);
 
         static Sample GetSample(string sampleContent) => JsonSerializer.Deserialize<Sample>(sampleContent);
 
