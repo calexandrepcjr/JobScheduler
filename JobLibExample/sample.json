@@ -1,21 +1,21 @@
-{
+ï»¿{
   "executionWindow": [ "2019-11-10 09:00:00", "2019-11-11 12:00:00" ],
   "jobs": [
     {
       "id": 1,
-      "description": "Importação de arquivos de fundos",
+      "description": "ImportaÃ§Ã£o de arquivos de fundos",
       "expiresAt": "2019-11-10 12:00:00",
       "estimatedTime": "2 horas"
     },
     {
       "id": 2,
-      "description": "Importação de dados da Base Legada",
+      "description": "ImportaÃ§Ã£o de dados da Base Legada",
       "expiresAt": "2019-11-11 12:00:00",
       "estimatedTime": "4 horas"
     },
     {
       "id": 3,
-      "description": "Importação de dados de integração",
+      "description": "ImportaÃ§Ã£o de dados de integraÃ§Ã£o",
       "expiresAt": "2019-11-11 08:00:00",
       "estimatedTime": "6 horas"
     }
