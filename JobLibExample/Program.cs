@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Example;
+using Example.Factories;
+using JobLib;
+using System;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-using Example;
-using Example.Factories;
-using JobLib;
-using Job = JobLib.Job;
 
 namespace JobLibExample
 {
