@@ -77,7 +77,7 @@ namespace Test
         }
 
         [Test]
-        public void RespondsToHasQueueReachedScoreAsFalseWhenMaxScoreIsReachedPuttingAdditionalScore()
+        public void RespondsToHasQueueReachedScoreAsFalseWhenMaxScoreIsNotReached()
         {
             var queuePosition = 0;
             var queueScore = new SchedulerQueueScore(30);
@@ -101,7 +101,55 @@ namespace Test
         }
 
         [Test]
-        public void RespondsToHasQueueReachedScoreAsFalseWhenMaxScoreIsNotReached()
+        public void RespondsToHasQueueEqualsScoreAsTrueWhenMaxScoreIsReached()
+        {
+            var queuePosition = 0;
+            var queueScore = new SchedulerQueueScore(10);
+            queueScore.RefreshScore(queuePosition, 5);
+            queueScore.RefreshScore(queuePosition, 5);
+
+            Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
+            Assert.True(queueScore.HasQueueEqualsScore(queuePosition));
+        }
+
+        [Test]
+        public void RespondsToHasQueueEqualsScoreAsTrueWhenMaxScoreIsReachedPuttingAdditionalScore()
+        {
+            var queuePosition = 0;
+            var queueScore = new SchedulerQueueScore(30);
+            queueScore.RefreshScore(queuePosition, 5);
+            queueScore.RefreshScore(queuePosition, 5);
+
+            Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
+            Assert.True(queueScore.HasQueueEqualsScore(queuePosition, 20));
+        }
+
+        [Test]
+        public void RespondsToHasQueueEqualsScoreAsFalseWhenMaxScoreIsNotEqual()
+        {
+            var queuePosition = 0;
+            var queueScore = new SchedulerQueueScore(30);
+            queueScore.RefreshScore(queuePosition, 5);
+            queueScore.RefreshScore(queuePosition, 5);
+
+            Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
+            Assert.False(queueScore.HasQueueEqualsScore(queuePosition));
+        }
+
+        [Test]
+        public void RespondsToHasQueueEqualsScoreAsFalseWhenMaxScoreIsSurpassed()
+        {
+            var queuePosition = 0;
+            var queueScore = new SchedulerQueueScore(5);
+            queueScore.RefreshScore(queuePosition, 5);
+            queueScore.RefreshScore(queuePosition, 5);
+
+            Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
+            Assert.False(queueScore.HasQueueEqualsScore(queuePosition));
+        }
+
+        [Test]
+        public void RespondsToHasQueueEqualsScoreAsFalseWhenMaxScoreIsNotReached()
         {
             var queuePosition = 0;
             var queueScore = new SchedulerQueueScore(20);
@@ -109,7 +157,7 @@ namespace Test
             queueScore.RefreshScore(queuePosition, 5);
 
             Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
-            Assert.False(queueScore.HasQueueReachedScore(queuePosition));
+            Assert.False(queueScore.HasQueueEqualsScore(queuePosition));
         }
 
         [Test]
@@ -171,6 +219,24 @@ namespace Test
 
             Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
             Assert.False(queueScore.HasReachedScore(10));
+        }
+
+        [Test]
+        public void RespondsToEqualsScore()
+        {
+            var queueScore = new SchedulerQueueScore(20);
+
+            Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
+            Assert.True(queueScore.EqualsScore(20));
+        }
+
+        [Test]
+        public void RespondsToEqualsScoreAsFalseWhenMaxScoreIsNotEqual()
+        {
+            var queueScore = new SchedulerQueueScore(20);
+
+            Assert.IsInstanceOf(typeof(SchedulerQueueScore), queueScore);
+            Assert.False(queueScore.EqualsScore(21));
         }
     }
 }

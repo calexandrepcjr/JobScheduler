@@ -28,6 +28,16 @@ namespace JobLib
             return this.GetScore(queuePosition) + additionalScore >= MaxScore;
         }
 
+        public bool HasQueueEqualsScore(int queuePosition, int additionalScore = 0)
+        {
+            return MaxScore.Equals(GetScore(queuePosition) + additionalScore);
+        }
+
+        public bool EqualsScore(int score)
+        {
+            return score.Equals(MaxScore);
+        }
+
         public bool HasReachedScore(int score)
         {
             return score >= MaxScore;
