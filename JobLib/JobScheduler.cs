@@ -1,4 +1,5 @@
-﻿using JobLib.Contracts;
+﻿using System;
+using JobLib.Contracts;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -60,6 +61,13 @@ namespace JobLib
                 return;
             }
 
+            if (QueuesScore.EqualsScore(job.Duration()))
+            {
+                Queues.Add(EnqueueJob(job, new Queue<Job>(), Queues.Count));
+
+                return;
+            }
+
             while (queueRow < Queues.Count)
             {
                 if (QueuesScore.HasQueueReachedScore(queueRow))
@@ -78,7 +86,7 @@ namespace JobLib
 
         protected Queue<Job> EnqueueJob(Job job, Queue<Job> queue, int queuePosition = 0)
         {
-            if (queue.Count > 0 && QueuesScore.HasQueueReachedScore(queuePosition, job.Duration()))
+            if (queue.Count > 0 && QueuesScore.HasQueueSurpassedScore(queuePosition, job.Duration()))
             {
                 ReorderQueue(job, queue, queuePosition);
 
@@ -98,7 +106,7 @@ namespace JobLib
 
             foreach (var queueJob in queue)
             {
-                if (QueuesScore.EqualsScore(job.Duration() + queueJob.Duration()))
+                if (QueuesScore.CompareScore(job.Duration() + queueJob.Duration()).Equals(0))
                 {
                     remainingJobs = queue.Where(j => j.Id != queueJob.Id).ToList();
                     rebalancedQueue.Enqueue(queueJob);
