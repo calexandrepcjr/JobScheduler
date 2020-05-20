@@ -1,15 +1,19 @@
-﻿using JobLib.Contracts;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace JobLib
+﻿namespace JobLib
 {
+    using JobLib.Contracts;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class JobScheduler
     {
         private readonly List<Queue<Job>> Queues = new List<Queue<Job>>();
+
         private readonly SchedulerQueueScore QueuesScore = new SchedulerQueueScore();
+
         private readonly ExecutionWindow ExecutionWindow;
+
         private readonly EstimatedTime MaxEstimatedTime;
+
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public JobScheduler(ExecutionWindow window, EstimatedTime maxEstimatedTime)
@@ -60,9 +64,16 @@ namespace JobLib
                 return;
             }
 
+            if (QueuesScore.EqualsScore(job.Duration()))
+            {
+                Queues.Add(EnqueueJob(job, new Queue<Job>(), Queues.Count));
+
+                return;
+            }
+
             while (queueRow < Queues.Count)
             {
-                if (QueuesScore.HasQueueReachedScore(queueRow))
+                if (!IsSchedulable(queueRow, job))
                 {
                     queueRow++;
                     continue;
@@ -73,12 +84,19 @@ namespace JobLib
                 return;
             }
 
-            Queues.Add(EnqueueJob(job, new Queue<Job>()));
+            Queues.Add(EnqueueJob(job, new Queue<Job>(), queueRow));
+        }
+
+        protected bool IsSchedulable(int queuePosition, Job job)
+        {
+            return !QueuesScore.HasQueueReachedScore(queuePosition)
+                   && !(QueuesScore.HasQueueSurpassedScore(queuePosition, job.Duration())
+                       && Queues[queuePosition].Count == 1);
         }
 
         protected Queue<Job> EnqueueJob(Job job, Queue<Job> queue, int queuePosition = 0)
         {
-            if (queue.Count > 0 && QueuesScore.HasQueueReachedScore(queuePosition, job.Duration()))
+            if (queue.Count > 0 && QueuesScore.HasQueueSurpassedScore(queuePosition, job.Duration()))
             {
                 ReorderQueue(job, queue, queuePosition);
 
@@ -98,7 +116,7 @@ namespace JobLib
 
             foreach (var queueJob in queue)
             {
-                if (QueuesScore.EqualsScore(job.Duration() + queueJob.Duration()))
+                if (QueuesScore.CompareScore(job.Duration() + queueJob.Duration()).Equals(0))
                 {
                     remainingJobs = queue.Where(j => j.Id != queueJob.Id).ToList();
                     rebalancedQueue.Enqueue(queueJob);

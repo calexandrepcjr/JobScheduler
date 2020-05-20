@@ -12,6 +12,13 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7985dac0_002Dd26f_002D415b_002D8079_002D1f217c2bd98d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SchedulesThreeJobsInsideExecutionWindowWithProperEstimatedTime2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.SchedulesThreeJobsInsideExecutionWindowWithProperEstimatedTime2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.SchedulesFiveJobsInsideExecutionWindowWithProperEstimatedTime&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a58923d8_002Dcefc_002D4a04_002Da453_002Dbd7bd01b8d90/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SchedulesSixJobsInsideExecutionWindowWithProperEstimatedTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.SchedulesSixJobsInsideExecutionWindowWithProperEstimatedTime&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7C73EEB6-EAC8-405B-940D-9E1AC550E48B::.NETCoreApp,Version=v3.1::Test.JobSchedulerSpec.SchedulesThreeJobsInsideExecutionWindowWithProperEstimatedTime2&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c1a3b229_002D9be9_002D4fd0_002D9eb6_002D041aad348f90/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreatesInstanceWithTwoDateTime" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

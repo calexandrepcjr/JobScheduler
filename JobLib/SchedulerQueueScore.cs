@@ -33,6 +33,11 @@ namespace JobLib
             return MaxScore.Equals(GetScore(queuePosition) + additionalScore);
         }
 
+        public bool HasQueueSurpassedScore(int queuePosition, int additionalScore = 0)
+        {
+            return this.GetScore(queuePosition) + additionalScore > MaxScore;
+        }
+
         public bool EqualsScore(int score)
         {
             return score.Equals(MaxScore);
@@ -41,6 +46,11 @@ namespace JobLib
         public bool HasReachedScore(int score)
         {
             return score >= MaxScore;
+        }
+
+        public int CompareScore(int score)
+        {
+            return MaxScore.CompareTo(score);
         }
 
         public void ResetScore(int queuePosition, int score = 0)
