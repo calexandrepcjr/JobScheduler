@@ -225,5 +225,58 @@ namespace Test
             Assert.AreEqual(expectedSchedulerArray, jobSchedulerArray);
             Assert.AreEqual(expectedQueues, jobScheduler.GetQueues());
         }
+
+        [Test]
+        public void SchedulesFiveJobsInsideExecutionWindowWithProperEstimatedTime()
+        {
+            var date1 = DateFactory.Build("2019-11-10 09:00:00");
+            var date2 = DateFactory.Build("2019-11-11 12:00:00");
+
+            var executionWindow = new ExecutionWindow(date1, date2);
+            var maxEstimatedTime = new EstimatedTimeBR("8 horas");
+            var jobScheduler = new JobScheduler(executionWindow, maxEstimatedTime);
+
+            var estimatedTime = new EstimatedTimeBR("2 horas");
+            var jobObj = new Job(1, "Integration", Convert.ToDateTime("2019-11-10 12:00:00"), estimatedTime);
+            jobScheduler.Schedule(jobObj);
+            var jobObj2 = new Job(2, "Integration2", Convert.ToDateTime("2019-11-11 12:00:00"), estimatedTime);
+            jobScheduler.Schedule(jobObj2);
+            var jobObj3 = new Job(3, "Integration3", Convert.ToDateTime("2019-11-11 08:00:00"), estimatedTime);
+            jobScheduler.Schedule(jobObj3);
+            var jobObj4 = new Job(4, "Integration4", Convert.ToDateTime("2019-11-11 09:00:00"), estimatedTime);
+            jobScheduler.Schedule(jobObj4);
+
+            var estimatedTime2 = new EstimatedTimeBR("8 horas");
+            var jobObj5 = new Job(5, "Integration5", Convert.ToDateTime("2019-11-11 10:00:00"), estimatedTime2);
+            jobScheduler.Schedule(jobObj5);
+
+            var jobSchedulerArray = jobScheduler.ToArray();
+            var expectedSchedulerArray = new int[2][];
+            expectedSchedulerArray[0] = new int[4];
+            expectedSchedulerArray[0][0] = 1;
+            expectedSchedulerArray[0][1] = 2;
+            expectedSchedulerArray[0][2] = 3;
+            expectedSchedulerArray[0][3] = 4;
+            expectedSchedulerArray[1] = new int[1];
+            expectedSchedulerArray[1][0] = 5;
+
+            var queue = new Queue<Job>();
+            queue.Enqueue(jobObj);
+            queue.Enqueue(jobObj2);
+            queue.Enqueue(jobObj3);
+            queue.Enqueue(jobObj4);
+            var queue2 = new Queue<Job>();
+            queue2.Enqueue(jobObj5);
+
+            var expectedQueues = new List<Queue<Job>>
+            {
+                queue,
+                queue2
+            };
+
+            Assert.IsNotEmpty(jobSchedulerArray);
+            Assert.AreEqual(expectedSchedulerArray, jobSchedulerArray);
+            Assert.AreEqual(expectedQueues, jobScheduler.GetQueues());
+        }
     }
 }
