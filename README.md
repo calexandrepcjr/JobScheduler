@@ -9,7 +9,7 @@ the scheduler will organize chunks of jobs, which each job list will execute seq
 
 ## How to see it working
 
-1. Unzip [v0.1 release](https://github.com/calexandrepcjr/JobScheduler/releases);
+1. Unzip [v0.2 release](https://github.com/calexandrepcjr/JobScheduler/releases/tag/v0.2);
 2. Execute Example.exe with the sample filename as argument (there is already one in the Example directory) - the example will be fed by a [valid](https://tools.ietf.org/html/rfc8259) JSON.
 
 The sample schema can be seen [here](https://github.com/calexandrepcjr/JobScheduler/blob/master/JobLibExample/sample.json).
